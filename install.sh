@@ -13,19 +13,7 @@ e_error() {
     printf "\033[31m%s\033[m\n" "✖ $*" 1>&2
 }
 
-brew install zsh-completions
 chmod -R go-w $(brew --prefix)/share
-
-brew install zsh-autosuggestions
-
-brew install google-cloud-sdk
-brew install pinentry-mac
-brew install asdf
-brew install direnv
-
-asdf plugin-add nodejs
-asdf install nodejs latest
-asdf global nodejs latest
 
 DOTPATH=${DOTPATH:-$HOME/.dotfiles}
 REPO="https://github.com/faruryo/dotfiles"
@@ -38,6 +26,12 @@ REPO="https://github.com/faruryo/dotfiles"
 e_newline
 e_header "Downloading dotfiles..."
 git clone --recursive "$REPO" "$DOTPATH"
+
+brew bundle --file $DOTPATH/Brewfile
+
+asdf plugin-add nodejs
+asdf install nodejs latest
+asdf global nodejs latest
 
 e_header "Symlink z files..."
 XDG_CONFIG_HOME=$HOME/.config

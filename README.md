@@ -5,7 +5,7 @@
 - MacOSX
 - Bash v5
 
-    ```
+    ```bash
     brew install bash
     ```
 

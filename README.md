@@ -13,9 +13,11 @@
 
 [新しい GPG キーを生成する - GitHub Docs](https://docs.github.com/ja/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key)
 
-## Install
+## Install & Update
 
 1. 個人情報を設定する
+
+    設定しない場合はGitの設定がなされません。
 
     ```sh
     export GIT_NAME=<GitHubアカウント名>
@@ -26,5 +28,5 @@
 1. install実行
 
     ```sh
-    curl https://raw.githubusercontent.com/faruryo/dotfiles/master/install.sh | $(brew --prefix)/bin/bash
+    curl https://raw.githubusercontent.com/faruryo/dotfiles/main/install.sh | $(brew --prefix)/bin/bash
     ```

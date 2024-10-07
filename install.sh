@@ -18,14 +18,14 @@ chmod -R go-w $(brew --prefix)/share
 DOTPATH=${DOTPATH:-$HOME/.dotfiles}
 REPO="https://github.com/faruryo/dotfiles"
 
-# if [ -d "$DOTPATH" ]; then
-#     e_error "$DOTPATH: already exists"
-#     exit 1
-# fi
-
-e_newline
-e_header "Downloading dotfiles..."
-git clone --recursive "$REPO" "$DOTPATH"
+if [ -d "$DOTPATH" ]; then
+    e_header "$DOTPATH: already exists"
+    cd "$DOTPATH" && git switch main && git pull
+else
+    e_newline
+    e_header "Downloading dotfiles..."
+    git clone --recursive "$REPO" "$DOTPATH"
+fi
 
 brew bundle --file $DOTPATH/Brewfile
 

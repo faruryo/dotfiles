@@ -29,9 +29,10 @@ fi
 
 brew bundle --file $DOTPATH/Brewfile
 
-asdf plugin-add nodejs
-asdf install nodejs latest
-asdf global nodejs latest
+if ! command -v volta >/dev/null 2>&1; then
+    curl https://get.volta.sh | bash
+    volta install node@latest
+fi
 
 e_header "Symlink z files..."
 XDG_CONFIG_HOME=$HOME/.config

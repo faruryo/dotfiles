@@ -21,6 +21,9 @@ if [[ -r $(brew --prefix asdf)/libexec/asdf.sh ]]; then
     . $(brew --prefix asdf)/libexec/asdf.sh
 fi
 
+# JavaScript
+PATH=$PATH:~/.volta/bin
+
 # go
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin

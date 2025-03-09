@@ -30,3 +30,9 @@
     ```sh
     curl https://raw.githubusercontent.com/faruryo/dotfiles/main/install.sh | $(brew --prefix)/bin/bash
     ```
+
+1. gh setup
+
+    ```sh
+    gh auth login
+    ```

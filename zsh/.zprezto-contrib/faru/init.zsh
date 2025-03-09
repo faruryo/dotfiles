@@ -32,6 +32,9 @@ export PATH=$PATH:$GOBIN
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# pipx
+export PATH="$PATH:~/.local/bin"
+
 # kubectl
 if [[ -r $HOME/.asdf/shims/kubectl ]]; then
     source <(kubectl completion zsh)

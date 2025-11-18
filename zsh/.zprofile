@@ -7,3 +7,5 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
    fi
    eval `cat $HOME/.ssh/ssh-agent`
 fi
+
+export GPG_TTY=$(tty)

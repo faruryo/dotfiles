@@ -38,7 +38,7 @@ export PATH="$PATH:~/.local/bin"
 # kubectl
 if [[ -r $HOME/.asdf/shims/kubectl ]]; then
     source <(kubectl completion zsh)
-elif [[ -r $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/kubectl ]]; then
+elif [[ -r $(brew --prefix)/Caskroom/gcloud-cli/latest/google-cloud-sdk/bin/kubectl ]]; then
     source <(kubectl completion zsh)
 fi
 alias k=kubectl
@@ -51,8 +51,8 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 emulate zsh -c "$(direnv hook zsh)"
 
 # gcloud
-source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source $(brew --prefix)/Caskroom/gcloud-cli/latest/google-cloud-sdk/completion.zsh.inc
+source $(brew --prefix)/Caskroom/gcloud-cli/latest/google-cloud-sdk/path.zsh.inc
 
 # gpg
 export GPG_TTY=$(tty)

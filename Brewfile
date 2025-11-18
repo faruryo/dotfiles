@@ -1,4 +1,3 @@
-tap "homebrew/bundle"
 brew "ca-certificates"
 brew "asdf"
 brew "bash"

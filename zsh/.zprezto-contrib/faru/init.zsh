@@ -13,12 +13,9 @@ if type brew &>/dev/null; then
     autoload -Uz compinit && compinit
 fi
 
-# asdf
-if [[ -r $(brew --prefix asdf)/asdf.sh ]]; then
-    . $(brew --prefix asdf)/asdf.sh
-fi
-if [[ -r $(brew --prefix asdf)/libexec/asdf.sh ]]; then
-    . $(brew --prefix asdf)/libexec/asdf.sh
+# mise (version manager)
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
 fi
 
 # JavaScript
@@ -36,9 +33,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$PATH:~/.local/bin"
 
 # kubectl
-if [[ -r $HOME/.asdf/shims/kubectl ]]; then
-    source <(kubectl completion zsh)
-elif [[ -r $(brew --prefix)/Caskroom/gcloud-cli/latest/google-cloud-sdk/bin/kubectl ]]; then
+if command -v kubectl >/dev/null 2>&1; then
     source <(kubectl completion zsh)
 fi
 alias k=kubectl

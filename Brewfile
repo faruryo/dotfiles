@@ -1,5 +1,5 @@
 brew "ca-certificates"
-brew "asdf"
+brew "mise"
 brew "bash"
 brew "direnv"
 brew "fzf"

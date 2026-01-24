@@ -18,29 +18,12 @@ if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
 
-# JavaScript
-PATH=$PATH:~/.volta/bin
-
-# go
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
-
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# pipx
-export PATH="$PATH:~/.local/bin"
-
 # kubectl
 if command -v kubectl >/dev/null 2>&1; then
     source <(kubectl completion zsh)
 fi
 alias k=kubectl
 compdef __start_kubectl k
-
-# krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # direnv
 emulate zsh -c "$(direnv hook zsh)"

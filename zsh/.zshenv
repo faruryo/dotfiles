@@ -5,3 +5,21 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 # zsh home directory
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+
+# Development tools PATH
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# Go
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH="$PATH:$GOBIN"
+
+# Python tools
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
+
+# Kubernetes
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

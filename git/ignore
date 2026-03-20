@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+.history/
+
+# Environment / Tools
+.env
+.env.local
+.direnv/
+node_modules/
+.python-version
+.ruby-version
+
+# Private Skills / Tools
+**/rysk-*
+
+# Others
+Thumbs.db
+desktop.ini

@@ -13,6 +13,19 @@
 
 [新しい GPG キーを生成する - GitHub Docs](https://docs.github.com/ja/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key)
 
+### GPG コミット署名のトラブルシューティング
+
+コミット時に `gpg: signing failed: No such file or directory` エラーが発生する場合、GUI（VS Code 等）からのパスフレーズ入力用プログラムの設定が必要です。
+
+```bash
+# gpg-agent.conf の作成と設定
+touch ~/.gnupg/gpg-agent.conf
+echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+
+# gpg-agent を再起動して設定を反映
+gpgconf --kill gpg-agent
+```
+
 ## Install & Update
 
 1. 個人情報を設定する

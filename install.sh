@@ -59,10 +59,17 @@ for dir in "${link_dirs[@]}"; do
     ln -vsnf $DOTPATH/$dir $XDG_CONFIG_HOME/$dir
 done
 
+# パスを取得
+export GPG_PATH=$(command -v gpg)
+export GH_PATH=$(command -v gh)
+
 # 変数チェック
-vars=(GIT_NAME GIT_EMAIL GIT_SIGNINGKEY)
+vars=(GIT_NAME GIT_EMAIL GIT_SIGNINGKEY GPG_PATH GH_PATH)
 for var in "${vars[@]}"; do
-    eval 'echo $'$var > /dev/null
+    if [[ -z "${!var:-}" ]]; then
+        e_error "$var is not set."
+        exit 1
+    fi
 done
 
 # template展開

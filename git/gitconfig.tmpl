@@ -11,12 +11,12 @@
 [credential]
 	helper = osxkeychain
 [gpg]
-	program = /usr/local/bin/gpg
+	program = $GPG_PATH
 [commit]
 	gpgsign = true
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/local/bin/gh auth git-credential
+	helper = !"$GH_PATH" auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/local/bin/gh auth git-credential
+	helper = !"$GH_PATH" auth git-credential

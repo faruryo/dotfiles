@@ -1,1 +1,6 @@
 Brewfile.lock.json
+
+# Tool Metadata / State
+.claude/*.local.json
+.serena/cache/
+.serena/project.local.yml

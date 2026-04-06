@@ -62,13 +62,13 @@ code-projects() {
 
         if [[ -f "$project_path/.envrc" ]]; then
             if command -v direnv >/dev/null 2>&1; then
-                direnv exec "$project_path" code "$project_path"
+                direnv exec "$project_path" code "$project_path" </dev/null
             else
                 print -u2 -- "⚠️  direnv が見つからないため通常起動します: $project_path"
-                code "$project_path"
+                code "$project_path" </dev/null
             fi
         else
-            code "$project_path"
+            code "$project_path" </dev/null
         fi
 
         launched_count=$((launched_count + 1))

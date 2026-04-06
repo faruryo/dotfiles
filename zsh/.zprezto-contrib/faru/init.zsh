@@ -34,3 +34,7 @@ source $(brew --prefix)/Caskroom/gcloud-cli/latest/google-cloud-sdk/path.zsh.inc
 
 # gpg
 export GPG_TTY=$(tty)
+
+if [[ -r "${0:A:h}/code-projects.zsh" ]]; then
+    source "${0:A:h}/code-projects.zsh"
+fi

@@ -19,7 +19,7 @@ node_modules/
 .ruby-version
 
 # Private Skills / Tools
-**/rysk-*
+rysk-*
 
 # Others
 Thumbs.db

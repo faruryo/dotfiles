@@ -1,0 +1,6 @@
+# 1 行に 1 プロジェクトパスを書く
+# 空行と # で始まる行は無視される
+# $HOME と ~ を使える
+
+$HOME/projects/example-service
+~/projects/example-admin

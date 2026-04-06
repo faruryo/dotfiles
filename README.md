@@ -49,3 +49,27 @@ gpgconf --kill gpg-agent
     ```sh
     gh auth login
     ```
+
+## VS Code project launcher
+
+複数のプロジェクトをまとめて VS Code で開くために、zsh 関数 `code-projects` を用意しています。
+
+1. サンプルをコピーして PC ごとの対象プロジェクトを設定する
+
+    ```sh
+    cp ~/.config/zsh/.vscode-projects.example ~/.config/zsh/.vscode-projects.local
+    ```
+
+1. `~/.config/zsh/.vscode-projects.local` を編集する
+
+    - 1 行に 1 ディレクトリを書く
+    - 空行と `#` で始まる行は無視される
+    - `$HOME` と `~` を使える
+
+1. シェルから起動する
+
+    ```sh
+    code-projects
+    ```
+
+各ディレクトリに `.envrc` があり `direnv` が使える場合は `direnv exec` 経由で起動し、それ以外は通常の `code` 起動になります。

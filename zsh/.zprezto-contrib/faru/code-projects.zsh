@@ -27,6 +27,7 @@ code-projects() {
     local raw_line
     local project_path
     local trimmed_line
+    local launch_interval_seconds=5
     local launched_count=0
 
     if ! command -v code >/dev/null 2>&1; then
@@ -56,6 +57,11 @@ code-projects() {
         if [[ ! -d "$project_path" ]]; then
             print -u2 -- "⚠️  スキップ (ディレクトリ未検出): $project_path"
             continue
+        fi
+
+        if (( launched_count > 0 )); then
+            print -- "⏳ ${launch_interval_seconds}秒待機します..."
+            sleep "$launch_interval_seconds"
         fi
 
         print -- "✅ 起動中: $project_path"

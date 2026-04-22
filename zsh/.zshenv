@@ -17,9 +17,8 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
 
-# Python tools
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$PATH:$HOME/.local/bin"
+# Python tools & Browser Use
+export PATH="$HOME/.browser-use-env/bin:$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
 
 # Kubernetes
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

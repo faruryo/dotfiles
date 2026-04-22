@@ -17,14 +17,7 @@ if command -v brew >/dev/null 2>&1; then
     chmod -R go-w $(brew --prefix)/share
 fi
 
-# prioritize current directory if it looks like the dotfiles repo
-if [ -z "${DOTPATH:-}" ]; then
-    if [ -f "$(pwd)/install.sh" ] && [ -d "$(pwd)/zsh" ]; then
-        DOTPATH=$(pwd)
-    else
-        DOTPATH=$HOME/.dotfiles
-    fi
-fi
+DOTPATH=${DOTPATH:-$HOME/.dotfiles}
 REPO="https://github.com/faruryo/dotfiles"
 
 if [ -d "$DOTPATH" ]; then

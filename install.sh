@@ -13,9 +13,18 @@ e_error() {
     printf "\033[31m%s\033[m\n" "✖ $*" 1>&2
 }
 
-chmod -R go-w $(brew --prefix)/share
+if command -v brew >/dev/null 2>&1; then
+    chmod -R go-w $(brew --prefix)/share
+fi
 
-DOTPATH=${DOTPATH:-$HOME/.dotfiles}
+# prioritize current directory if it looks like the dotfiles repo
+if [ -z "${DOTPATH:-}" ]; then
+    if [ -f "$(pwd)/install.sh" ] && [ -d "$(pwd)/zsh" ]; then
+        DOTPATH=$(pwd)
+    else
+        DOTPATH=$HOME/.dotfiles
+    fi
+fi
 REPO="https://github.com/faruryo/dotfiles"
 
 if [ -d "$DOTPATH" ]; then
@@ -38,16 +47,14 @@ e_header "Symlink z files..."
 XDG_CONFIG_HOME=$HOME/.config
 
 # files
-declare -A dot_files
-dot_files=(
-    ["zshenv"]="zsh/.zshenv" \
-    ["gitconfig"]="git/gitconfig" \
-)
-for file in "${!dot_files[@]}"; do
-    if [[ -f  $HOME/.$file && ! -L $HOME/.$file ]]; then
+dot_files="zshenv:zsh/.zshenv gitconfig:git/gitconfig"
+for item in $dot_files; do
+    file="${item%%:*}"
+    path="${item#*:}"
+    if [[ -f $HOME/.$file && ! -L $HOME/.$file ]]; then
         mv -v $HOME/.$file $HOME/.$file.$(date +'%Y%m%d%H%M%S').backup
     fi
-    ln -vsnf $DOTPATH/${dot_files[$file]} $HOME/.$file
+    ln -vsnf $DOTPATH/$path $HOME/.$file
 done
 
 # directories

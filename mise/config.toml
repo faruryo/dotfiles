@@ -2,13 +2,13 @@
 # https://mise.jdx.dev/configuration.html
 
 [tools]
-kubectl = "1.23.10"
+kubectl = "1.36.0"
 kustomize = "4.5.7"
-golang = "1.24.5"
-stern = "1.21.0"
+golang = "1.26.2"
+stern = "1.34.0"
 # nodejs is managed by volta
-rust = "1.85.0"
-golangci-lint = "2.3.0"
+rust = "1.95.0"
+golangci-lint = "2.12.1"
 
 [settings]
 experimental = false

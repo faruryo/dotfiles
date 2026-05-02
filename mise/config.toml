@@ -3,7 +3,7 @@
 
 [tools]
 kubectl = "1.23.10"
-kustomize = "4.5.7"
+kustomize = "5.8.1"
 golang = "1.24.5"
 stern = "1.21.0"
 # nodejs is managed by volta

@@ -1,6 +1,6 @@
 font-family = JetBrainsMono Nerd Font
 font-size = 14
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 shell-integration = zsh
 cursor-style = block
 mouse-hide-while-typing = true

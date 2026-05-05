@@ -1,5 +1,5 @@
 format = """
-$directory$git_branch$git_status$fill$kubernetes$gcloud$cmd_duration$line_break$character
+$directory$git_branch$git_status$golang$rust$nodejs$python$docker_context$terraform$fill$kubernetes$gcloud$cmd_duration$line_break$character
 """
 add_newline = true
 
@@ -20,6 +20,32 @@ stashed = "≡"
 ahead = "↑${count}"
 behind = "↓${count}"
 diverged = "↑${ahead_count}↓${behind_count}"
+
+[golang]
+format = "[$symbol$version]($style) "
+symbol = " "
+
+[rust]
+format = "[$symbol$version]($style) "
+symbol = " "
+
+[nodejs]
+format = "[$symbol$version]($style) "
+symbol = " "
+
+[python]
+format = "[$symbol$version]($style) "
+symbol = " "
+detect_files = ["pyproject.toml", "requirements.txt", "setup.py", ".python-version", "Pipfile", "poetry.lock"]
+
+[docker_context]
+format = "[$symbol$context]($style) "
+symbol = " "
+only_with_files = true
+
+[terraform]
+format = "[$symbol$workspace]($style) "
+symbol = "󱁢 "
 
 [kubernetes]
 disabled = false

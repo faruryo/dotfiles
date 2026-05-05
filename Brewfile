@@ -1,4 +1,5 @@
 brew "ca-certificates"
+brew "chezmoi"
 brew "mise"
 brew "bash"
 brew "direnv"

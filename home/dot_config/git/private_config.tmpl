@@ -1,7 +1,7 @@
 [user]
-	name = $GIT_NAME
-	email = $GIT_EMAIL
-	signingkey = $GIT_SIGNINGKEY
+	name = {{ .gitName }}
+	email = {{ .gitEmail }}
+	signingkey = {{ .signingKey }}
 [core]
 	autocrlf = input
 	editor = code --wait
@@ -11,12 +11,12 @@
 [credential]
 	helper = osxkeychain
 [gpg]
-	program = $GPG_PATH
+	program = {{ lookPath "gpg" }}
 [commit]
 	gpgsign = true
 [credential "https://github.com"]
-	helper = 
-	helper = !"$GH_PATH" auth git-credential
+	helper =
+	helper = !"{{ lookPath "gh" }}" auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !"$GH_PATH" auth git-credential
+	helper =
+	helper = !"{{ lookPath "gh" }}" auth git-credential

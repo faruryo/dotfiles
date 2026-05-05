@@ -22,30 +22,24 @@ behind = "↓${count}"
 diverged = "↑${ahead_count}↓${behind_count}"
 
 [golang]
-format = "[$symbol$version]($style) "
-symbol = " "
+format = "[go $version]($style) "
 
 [rust]
-format = "[$symbol$version]($style) "
-symbol = " "
+format = "[rs $version]($style) "
 
 [nodejs]
-format = "[$symbol$version]($style) "
-symbol = " "
+format = "[node $version]($style) "
 
 [python]
-format = "[$symbol$version]($style) "
-symbol = " "
+format = "[py $version]($style) "
 detect_files = ["pyproject.toml", "requirements.txt", "setup.py", ".python-version", "Pipfile", "poetry.lock"]
 
 [docker_context]
-format = "[$symbol$context]($style) "
-symbol = " "
+format = "[🐳 $context]($style) "
 only_with_files = true
 
 [terraform]
-format = "[$symbol$workspace]($style) "
-symbol = "󱁢 "
+format = "[tf $workspace]($style) "
 
 [kubernetes]
 disabled = false

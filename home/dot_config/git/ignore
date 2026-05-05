@@ -17,6 +17,7 @@
 node_modules/
 .python-version
 .ruby-version
+.claude/settings.local.json
 
 # Private Skills / Tools
 rysk-*

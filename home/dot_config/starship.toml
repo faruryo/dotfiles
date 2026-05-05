@@ -1,0 +1,44 @@
+format = """
+$directory$git_branch$git_status$fill$kubernetes$gcloud$cmd_duration$line_break$character
+"""
+add_newline = true
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+truncation_length = 4
+truncate_to_repo = true
+
+[git_branch]
+format = "[$branch]($style) "
+
+[git_status]
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+stashed = "≡"
+ahead = "↑${count}"
+behind = "↓${count}"
+diverged = "↑${ahead_count}↓${behind_count}"
+
+[kubernetes]
+disabled = false
+format = "[$symbol$context]($style) "
+symbol = "⎈ "
+[[kubernetes.contexts]]
+context_pattern = "kubernetes-admin-cluster.local@cluster.local"
+context_alias = "local"
+
+[fill]
+symbol = " "
+
+[gcloud]
+disabled = false
+format = "[$symbol$account(@$domain)]($style) "
+
+[cmd_duration]
+min_time = 3_000
+format = "[ $duration]($style) "
+
+[aws]
+disabled = true

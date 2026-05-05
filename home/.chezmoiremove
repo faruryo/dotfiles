@@ -1,0 +1,5 @@
+.config/zsh/.zpreztorc
+.config/zsh/.p10k.zsh
+.config/zsh/.zprezto-contrib
+.config/zsh/.zprezto
+.config/tmux

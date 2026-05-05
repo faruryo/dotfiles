@@ -1,5 +1,4 @@
-[".config/zsh/.zprezto"]
-    type           = "git-repo"
-    url            = "https://github.com/sorin-ionescu/prezto.git"
-    clone.args     = ["--recurse-submodules"]
-    pull.args      = ["--recurse-submodules", "--ff-only"]
+[".config/zsh/.fzf-tab"]
+    type          = "git-repo"
+    url           = "https://github.com/Aloxaf/fzf-tab.git"
+    refreshPeriod = "168h"

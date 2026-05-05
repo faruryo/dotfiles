@@ -1,0 +1,5 @@
+theme "catppuccin-mocha"
+default_layout "compact"
+mouse_mode true
+copy_on_select true
+pane_frames false

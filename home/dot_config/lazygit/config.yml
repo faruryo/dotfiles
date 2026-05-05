@@ -1,0 +1,10 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - default
+  showIcons: true
+git:
+  paging:
+    colorArg: always
+  commit:
+    signOff: false

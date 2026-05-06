@@ -33,76 +33,184 @@ bash <(curl -fsSL https://raw.githubusercontent.com/faruryo/dotfiles/main/instal
 
 ```sh
 gh auth login
+brew bundle --file=~/dotfiles/Brewfile   # 全ツールをインストール
 ```
 
 ---
 
-## 既存環境からの移行（旧シンボリックリンク方式 → chezmoi）
+## ツールスタック
 
-以前の `install.sh`（`~/.dotfiles/` へのシンボリックリンク方式）を使っていた場合の移行手順です。
+### ターミナル・シェル環境
 
-### 1. chezmoi をインストール
+| ツール | 役割 | 起動 |
+|---|---|---|
+| **Ghostty** | ターミナルエミュレータ | アプリから起動 |
+| **Zellij** | ターミナルマルチプレクサ（tmux 代替） | `zellij` |
+| **Starship** | プロンプト（自動ロード） | — |
+| **Atuin** | シェル履歴検索 | `Ctrl+R` |
+| **Zoxide** | ディレクトリジャンプ（cd 代替） | `cd <部分名>` |
+| **fzf-tab** | zsh 補完のファジー化（自動ロード） | `Tab` |
 
-```sh
-brew install chezmoi
+### ファイル・Git
+
+| ツール | 役割 | 起動 |
+|---|---|---|
+| **Yazi** | TUI ファイルマネージャー | `yazi` |
+| **Lazygit** | TUI Git クライアント | `lazygit` |
+| **fzf** | ファジーファインダー | `Ctrl+T`（ファイル）/ `**Tab` |
+
+### 開発環境管理
+
+| ツール | 役割 | 主なコマンド |
+|---|---|---|
+| **mise** | ランタイムバージョン管理 | `mise use go@latest` |
+| **direnv** | ディレクトリ別環境変数 | `.envrc` を置くだけ |
+| **Volta** | Node.js バージョン管理 | `volta install node` |
+
+---
+
+## 各ツールの使い方
+
+### Zellij（マルチプレクサ）
+
+画面下部にキーバインドが常時表示されるため、覚える必要は最小限です。
+
+```
+Ctrl+p → 新規ペイン           Ctrl+p → n（新規）/ x（閉じる）
+Ctrl+t → タブ操作             Ctrl+n（新規タブ）
+Ctrl+p → f  フローティングペイン（一時的なウィンドウ）
+Alt+←→ → ペイン間移動
 ```
 
-### 2. リポジトリを取得
-
-すでに `~/dotfiles` にクローン済みの場合はスキップ。
+### Atuin（履歴検索）
 
 ```sh
-git clone https://github.com/faruryo/dotfiles ~/dotfiles
+Ctrl+R          # 履歴をインタラクティブ検索（fzf 風 UI）
+atuin stats     # よく使うコマンドの統計
+atuin search <キーワード>
 ```
 
-### 3. chezmoi の設定ファイルを作成
+### Zoxide（ディレクトリジャンプ）
 
 ```sh
-mkdir -p ~/.config/chezmoi
-cat > ~/.config/chezmoi/chezmoi.toml << EOF
-sourceDir = "$HOME/dotfiles/home"
-
-[data]
-    gitName    = "YOUR_GIT_NAME"
-    gitEmail   = "YOUR_GIT_EMAIL"
-    signingKey = "YOUR_GPG_KEY_ID"
-EOF
+cd proj         # "proj" を含む直近のディレクトリに移動（学習型）
+cd              # zi でインタラクティブ選択（fzf UI）
+zi              # fzf で候補を選んでジャンプ
 ```
 
-現在の signingKey は `git config user.signingkey` で確認できます。
-
-### 4. 古いシンボリックリンクを削除
+### Yazi（ファイルマネージャー）
 
 ```sh
-rm -f ~/.zshenv ~/.gitconfig
-rm -f ~/.config/zsh ~/.config/git ~/.config/tmux ~/.config/mise
+yazi            # 起動。終了時に現在ディレクトリに cd される
+h/j/k/l         # 移動（Vim キー）
+Enter           # 開く / ディレクトリに入る
+y               # コピー、p でペースト
+Space           # 複数選択
+/               # 検索
+q               # 終了
 ```
 
-### 5. chezmoi を適用
+zsh から yazi を開いて終了時に自動 cd させる：
 
 ```sh
-chezmoi apply
+# ~/.config/zsh/.zshrc に追加済み（y コマンドとして使いたい場合）
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if [ -s "$tmp" ]; then cd "$(cat "$tmp")"; fi
+    rm -f "$tmp"
+}
 ```
 
-### 6. 動作確認
+### Lazygit（Git TUI）
 
 ```sh
-chezmoi status              # 差分なし（何も pending でない）
-cat ~/.config/git/config    # name/email が正しく展開されているか確認
-ls ~/.config/zsh/.zprezto   # Prezto がクローンされているか確認
+lazygit         # プロジェクトルートで起動
 ```
 
-### 7. 古いリポジトリを削除（任意）
+```
+Space           # ファイルをステージ / アンステージ
+c               # コミット
+P               # プッシュ
+p               # プル
+b               # ブランチ操作
+?               # ヘルプ
+```
 
-問題なければ古い `~/.dotfiles/` は不要です。
+Claude Code がコード変更した後の差分確認・コミットに最適です。
+
+### fzf-tab（補完）
 
 ```sh
-rm -rf ~/.dotfiles
+cd <Tab>        # ディレクトリをファジー選択
+git checkout <Tab>  # ブランチをファジー選択
+kill <Tab>      # プロセスをファジー選択
+```
+
+### Starship（プロンプト）
+
+コンテキストに応じて自動表示：
+
+```
+~/proj/myapp main [↑2] rs 1.89.0    ⎈ local
+❯
+```
+
+- `main [↑2]` — ブランチ名と git 状態
+- `rs 1.89.0` — 言語バージョン（go / rs / py / node / tf など）
+- `⎈ local` — kubectl コンテキスト
+- `☁️` — gcloud アカウント
+- `3s` — 3 秒以上かかったコマンドの実行時間
+
+---
+
+## ツールの組み合わせ方
+
+### Claude Code × Lazygit
+
+エージェントが大量のファイルを変更した後に差分を精査する：
+
+```sh
+# Claude Code でタスクを実行
+# → 変更後に lazygit を開いてペインで確認
+lazygit
+# Space で1行ずつステージ → c でコミット
+```
+
+### Yazi × Zellij
+
+Zellij のフローティングペインで Yazi を開いてディレクトリツリーを俯瞰：
+
+```
+Ctrl+p → f    # フローティングペインを開く
+yazi          # Yazi 起動
+q             # Yazi 終了 → ペインも閉じる
+```
+
+### Atuin × fzf-tab
+
+コマンド履歴から再実行：
+
+```
+Ctrl+R → 検索ワード → Enter    # 過去のコマンドを再実行
+↑/↓                            # 候補を絞り込み
+```
+
+### mise × direnv
+
+プロジェクトごとに自動でランタイムを切り替える：
+
+```sh
+# プロジェクトルートで
+echo "go 1.24.5" > .tool-versions   # mise が自動認識
+echo "export GOFLAGS=-mod=vendor" > .envrc
+direnv allow                          # .envrc を有効化
+# → ディレクトリに入ると自動で go 1.24.5 + 環境変数が設定される
 ```
 
 ---
 
-## 日常的な使い方
+## 日常的な chezmoi の使い方
 
 ```sh
 chezmoi apply           # 変更をホームディレクトリに適用
@@ -110,12 +218,7 @@ chezmoi diff            # 適用前に差分を確認
 chezmoi edit ~/.zshenv  # ソースファイルを編集して apply
 chezmoi update          # git pull + apply を一度に実行
 chezmoi status          # 未適用の変更を確認
-```
-
-ファイルを直接編集した場合はソースに取り込む：
-
-```sh
-chezmoi re-add ~/.zshenv
+chezmoi re-add ~/.config/starship.toml  # 直接編集した設定を取り込む
 ```
 
 ---

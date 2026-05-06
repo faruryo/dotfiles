@@ -23,24 +23,24 @@ diverged = "↑${ahead_count}↓${behind_count}"
 
 [golang]
 format = "[$symbol$version](bold cyan) "
-symbol = " "
+symbol = " "
 
 [rust]
 format = "[$symbol$version](bold red) "
-symbol = " "
+symbol = " "
 
 [nodejs]
 format = "[$symbol$version](bold green) "
-symbol = " "
+symbol = " "
 
 [python]
 format = "[$symbol$version](bold yellow) "
-symbol = " "
+symbol = " "
 detect_files = ["pyproject.toml", "requirements.txt", "setup.py", ".python-version", "Pipfile", "poetry.lock"]
 
 [docker_context]
 format = "[$symbol$context](bold blue) "
-symbol = " "
+symbol = " "
 only_with_files = true
 
 [terraform]
@@ -50,7 +50,7 @@ symbol = "󱁢 "
 [kubernetes]
 disabled = false
 format = "[$symbol$context]($style) "
-symbol = "⎈ "
+symbol = "\U000F10FE "
 [[kubernetes.contexts]]
 context_pattern = "kubernetes-admin-cluster.local@cluster.local"
 context_alias = "local"

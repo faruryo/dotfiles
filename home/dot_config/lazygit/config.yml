@@ -8,3 +8,6 @@ git:
     colorArg: always
   commit:
     signOff: false
+os:
+  editCommand: 'hx'
+  editCommandTemplate: '{{editor}} {{filename}}'

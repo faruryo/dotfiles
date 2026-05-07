@@ -8,3 +8,13 @@ linemode = "size"
 [preview]
 image_delay = 30
 image_filter = "triangle"
+
+[opener]
+edit = [
+	{ run = 'hx "$@"', block = true, desc = "Edit with Helix" },
+]
+
+[open]
+rules = [
+	{ name = "*", use = "edit" },
+]

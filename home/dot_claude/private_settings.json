@@ -1,6 +1,7 @@
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "TERM_PROGRAM": "iTerm.app"
   },
   "permissions": {
     "defaultMode": "auto"
@@ -51,7 +52,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.py"
+    "command": "python3 ~/.claude/statusline.py"
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": false,
@@ -63,7 +64,9 @@
     "vercel-plugin@vercel": true,
     "sustainable-dev-tools@faruryo-plugins": true,
     "frontend-design@claude-plugins-official": true,
-    "worktrunk@worktrunk": true
+    "worktrunk@worktrunk": true,
+    "supabase@claude-plugins-official": true,
+    "statusline@faruryo-plugins": true
   },
   "extraKnownMarketplaces": {
     "faruryo-plugins": {

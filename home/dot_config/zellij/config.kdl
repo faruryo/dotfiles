@@ -19,8 +19,20 @@ keybinds {
         bind "Alt [" { NextSwapLayout; }
 
         // Quick Tab Switch with Layouts
-        bind "Alt d" { NewTab { layout "dev"; }; }
-        bind "Alt f" { NewTab { layout "focus"; }; }
-        bind "Alt o" { NewTab { layout "ops"; }; }
+        bind "Alt d" {
+            NewTab {
+                layout "dev"
+            }
+        }
+        bind "Alt f" {
+            NewTab {
+                layout "focus"
+            }
+        }
+        bind "Alt o" {
+            NewTab {
+                layout "ops"
+            }
+        }
     }
 }

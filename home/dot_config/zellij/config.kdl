@@ -1,5 +1,26 @@
 theme "catppuccin-mocha"
-default_layout "compact"
+default_layout "dev"
 mouse_mode true
 copy_on_select true
 pane_frames false
+
+// Shift+Enter support for Claude Code
+styled_underlines true
+
+keybinds {
+    normal {
+        // Toggle Floating Lazygit
+        bind "Alt g" {
+            Run "lazygit" {
+                floating true
+            }
+        }
+        // Toggle Sidebar (via Swap Layout)
+        bind "Alt [" { NextSwapLayout; }
+
+        // Quick Tab Switch with Layouts
+        bind "Alt d" { NewTab { layout "dev"; }; }
+        bind "Alt f" { NewTab { layout "focus"; }; }
+        bind "Alt o" { NewTab { layout "ops"; }; }
+    }
+}

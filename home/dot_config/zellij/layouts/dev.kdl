@@ -9,11 +9,16 @@ layout {
         }
     }
 
-    pane split_direction="vertical" {
-        pane size="40%" {
-            pane name="Explorer" command="yazi"
-            pane name="Git" command="lazygit"
+    tab name="Dev" {
+        pane split_direction="vertical" {
+            pane size="40%" {
+                pane name="Explorer" command="yazi"
+                pane name="Git" command="lazygit"
+            }
+            pane size="60%" name="Claude" {
+                command "zsh"
+                args "-c" "TERM_PROGRAM=iTerm.app claude; exec zsh"
+            }
         }
-        pane size="60%" name="Claude" command="claude"
     }
 }

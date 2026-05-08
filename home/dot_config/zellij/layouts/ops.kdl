@@ -16,7 +16,10 @@ layout {
                 pane name="Logs"
             }
             pane {
-                pane name="Claude" command="claude"
+                pane name="Claude" {
+                    command "zsh"
+                    args "-c" "TERM_PROGRAM=iTerm.app claude; exec zsh"
+                }
                 pane name="Terminal"
             }
         }

@@ -9,6 +9,14 @@ styled_underlines true
 
 keybinds {
     normal {
+        bind "Ctrl p" { SwitchToMode "pane"; }
+        bind "Ctrl n" { SwitchToMode "resize"; }
+        bind "Ctrl t" { SwitchToMode "tab"; }
+        bind "Ctrl h" { SwitchToMode "move"; }
+        bind "Ctrl s" { SwitchToMode "scroll"; }
+        bind "Ctrl o" { SwitchToMode "session"; }
+        bind "Ctrl q" { Quit; }
+
         // Toggle Floating Lazygit
         bind "Alt g" {
             Run "lazygit" {

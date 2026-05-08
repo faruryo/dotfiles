@@ -59,6 +59,7 @@ brew bundle install --file="$HOME/dotfiles/Brewfile"
 |---|---|---|
 | **Yazi** | TUI ファイルマネージャー | `yazi` |
 | **Lazygit** | TUI Git クライアント | `lazygit` |
+| **Worktrunk** | Git worktree 管理 | `wt` |
 | **fzf** | ファジーファインダー | `Ctrl+T`（ファイル）/ `**Tab` |
 
 ### 開発環境管理
@@ -147,6 +148,19 @@ b               # ブランチ操作
 ```
 
 Claude Code がコード変更した後の差分確認・コミットに最適です。
+
+### Worktrunk（git worktree 管理）
+
+```sh
+wt start feature/my-task
+wt list
+wt remove feature/my-task
+```
+
+- `wt start <branch>` で作業用 worktree を作成してその場で移動できます。
+- `wt list` で worktree 一覧を確認できます。
+- `wt remove <branch>` で不要な worktree を片付けられます。
+- zsh では shell integration を自動ロードしているため、`wt` 実行後のディレクトリ移動もそのまま反映されます。
 
 ### fzf-tab（補完）
 

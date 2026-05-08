@@ -33,8 +33,10 @@ bash <(curl -fsSL https://raw.githubusercontent.com/faruryo/dotfiles/main/instal
 
 ```sh
 gh auth login
-brew bundle --file=~/dotfiles/Brewfile   # 全ツールをインストール
+brew bundle install --file="$HOME/dotfiles/Brewfile"
 ```
+
+2 行目で Brewfile にあるツールをまとめてインストールします。
 
 ---
 
@@ -85,36 +87,38 @@ Alt+←→ → ペイン間移動
 ### Atuin（履歴検索）
 
 ```sh
-Ctrl+R          # 履歴をインタラクティブ検索（fzf 風 UI）
-atuin stats     # よく使うコマンドの統計
+atuin stats
 atuin search <キーワード>
 ```
+
+- `Ctrl+R` で履歴をインタラクティブ検索できます。
+- `atuin stats` でよく使うコマンドの統計を見られます。
 
 ### Zoxide（ディレクトリジャンプ）
 
 ```sh
-cd proj         # "proj" を含む直近のディレクトリに移動（学習型）
-cd              # zi でインタラクティブ選択（fzf UI）
-zi              # fzf で候補を選んでジャンプ
+cd proj
+cd
+zi
 ```
+
+- `cd proj` で `proj` を含む直近のディレクトリに移動します。
+- `cd` で `zi` 相当のインタラクティブ選択を開けます。
+- `zi` で候補を選んでジャンプできます。
 
 ### Yazi（ファイルマネージャー）
 
 ```sh
-yazi            # 起動。終了時に現在ディレクトリに cd される
-h/j/k/l         # 移動（Vim キー）
-Enter           # 開く / ディレクトリに入る
-.               # 隠しファイルの表示/非表示
-y               # コピー、p でペースト
-Space           # 複数選択
-/               # 検索
-q               # 終了
+yazi
 ```
+
+- `yazi` で起動します。終了時に現在ディレクトリへ `cd` されます。
+- 移動は `h/j/k/l`、開くには `Enter`、検索は `/`、終了は `q` です。
+- `.` で隠しファイルの表示切り替え、`y` と `p` でコピーとペースト、`Space` で複数選択できます。
 
 zsh から yazi を開いて終了時に自動 cd させる：
 
 ```sh
-# ~/.config/zsh/.zshrc に追加済み（y コマンドとして使いたい場合）
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
     yazi "$@" --cwd-file="$tmp"
@@ -123,11 +127,15 @@ function y() {
 }
 ```
 
+この関数は [home/dot_config/zsh/dot_zshrc](home/dot_config/zsh/dot_zshrc) に追加済みです。
+
 ### Lazygit（Git TUI）
 
 ```sh
-lazygit         # プロジェクトルートで起動
+lazygit
 ```
+
+プロジェクトルートで実行すると起動します。
 
 ```
 Space           # ファイルをステージ / アンステージ
@@ -143,10 +151,14 @@ Claude Code がコード変更した後の差分確認・コミットに最適�
 ### fzf-tab（補完）
 
 ```sh
-cd <Tab>        # ディレクトリをファジー選択
-git checkout <Tab>  # ブランチをファジー選択
-kill <Tab>      # プロセスをファジー選択
+cd <Tab>
+git checkout <Tab>
+kill <Tab>
 ```
+
+- `cd <Tab>` でディレクトリをファジー選択します。
+- `git checkout <Tab>` でブランチをファジー選択します。
+- `kill <Tab>` でプロセスをファジー選択します。
 
 ### Starship（プロンプト）
 
@@ -172,11 +184,10 @@ kill <Tab>      # プロセスをファジー選択
 エージェントが大量のファイルを変更した後に差分を精査する：
 
 ```sh
-# Claude Code でタスクを実行
-# → 変更後に lazygit を開いてペインで確認
 lazygit
-# Space で1行ずつステージ → c でコミット
 ```
+
+Claude Code で変更を入れたあとに `lazygit` を開き、差分を確認してからステージとコミットを進めます。
 
 ### Yazi × Zellij
 
@@ -202,25 +213,33 @@ Ctrl+R → 検索ワード → Enter    # 過去のコマンドを再実行
 プロジェクトごとに自動でランタイムを切り替える：
 
 ```sh
-# プロジェクトルートで
-echo "go 1.24.5" > .tool-versions   # mise が自動認識
+echo "go 1.24.5" > .tool-versions
 echo "export GOFLAGS=-mod=vendor" > .envrc
-direnv allow                          # .envrc を有効化
-# → ディレクトリに入ると自動で go 1.24.5 + 環境変数が設定される
+direnv allow
 ```
+
+- `.tool-versions` を置くと `mise` がランタイムを自動認識します。
+- `direnv allow` を実行すると、以後はディレクトリに入るだけで Go のバージョンと環境変数が自動で反映されます。
 
 ---
 
 ## 日常的な chezmoi の使い方
 
 ```sh
-chezmoi apply           # 変更をホームディレクトリに適用
-chezmoi diff            # 適用前に差分を確認
-chezmoi edit ~/.zshenv  # ソースファイルを編集して apply
-chezmoi update          # git pull + apply を一度に実行
-chezmoi status          # 未適用の変更を確認
-chezmoi re-add ~/.config/starship.toml  # 直接編集した設定を取り込む
+chezmoi apply
+chezmoi diff
+chezmoi edit ~/.zshenv
+chezmoi update
+chezmoi status
+chezmoi re-add ~/.config/starship.toml
 ```
+
+- `chezmoi apply` で変更をホームディレクトリに適用します。
+- `chezmoi diff` で適用前の差分を確認できます。
+- `chezmoi edit ~/.zshenv` でソースを編集し、そのまま `apply` まで進められます。
+- `chezmoi update` で `git pull` と `apply` をまとめて実行できます。
+- `chezmoi status` で未適用の変更を確認できます。
+- `chezmoi re-add ~/.config/starship.toml` でホーム側の直接編集をソースへ取り込めます。
 
 ---
 

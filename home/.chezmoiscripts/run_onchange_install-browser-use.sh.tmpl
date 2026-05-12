@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Install/Update browser-use — runs when this script changes or manually triggered
+set -euo pipefail
+
+ENV_DIR="$HOME/.browser-use-env"
+
+echo "Checking browser-use environment in $ENV_DIR..."
+
+if [ ! -d "$ENV_DIR" ]; then
+    echo "Creating virtual environment..."
+    uv venv "$ENV_DIR"
+fi
+
+echo "Installing/Updating browser-use..."
+uv pip install -U --python "$ENV_DIR/bin/python" browser-use playwright
+
+echo "Installing playwright browsers..."
+"$ENV_DIR/bin/python" -m playwright install chromium
+
+echo "browser-use setup complete."

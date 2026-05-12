@@ -83,6 +83,10 @@ Ctrl+p → 新規ペイン           Ctrl+p → n（新規）/ x（閉じる）
 Ctrl+t → タブ操作             Ctrl+n（新規タブ）
 Ctrl+p → f  フローティングペイン（一時的なウィンドウ）
 Alt+←→ → ペイン間移動
+Alt+d    → 開発用タブ（2カラム: Git/Claude）
+Alt+y    → フローティング Yazi（ファイラ）
+Alt+g    → フローティング Lazygit
+Alt+[    → レイアウト切り替え（2カラム/集中/全画面）
 ```
 
 ### Atuin（履歴検索）
@@ -94,6 +98,28 @@ atuin search <キーワード>
 
 - `Ctrl+R` で履歴をインタラクティブ検索できます。
 - `atuin stats` でよく使うコマンドの統計を見られます。
+
+### browser-use（AIブラウザ操作）
+
+AIエージェント向けのブラウザ操作ライブラリです。
+
+```sh
+# 専用の仮想環境が自動構築されています
+~/.browser-use-env/bin/python your_agent.py
+```
+
+- `~/.browser-use-env` にライブラリと専用の Chromium がインストールされています。
+
+### playwright-cli（Playwright CLI）
+
+Playwright をコマンドラインから操作するための公式ツールです。
+
+```sh
+playwright-cli --help
+playwright-cli open https://example.com
+```
+
+- `volta` を介してグローバルにインストールされています。
 
 ### Zoxide（ディレクトリジャンプ）
 
@@ -211,6 +237,10 @@ Zellij のフローティングペインで Yazi を開いてディレクトリ�
 Ctrl+p → f    # フローティングペインを開く
 yazi          # Yazi 起動
 q             # Yazi 終了 → ペインも閉じる
+
+またはショートカットを使用：
+
+Alt+y         # 一撃でフローティング Yazi を起動
 ```
 
 ### Atuin × fzf-tab

@@ -8,3 +8,4 @@ fi
 
 curl https://get.volta.sh | bash
 volta install node@latest
+volta install @playwright/cli@latest

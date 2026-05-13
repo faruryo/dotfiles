@@ -4,8 +4,8 @@ gui:
       - default
   showIcons: true
 git:
-  paging:
-    colorArg: always
+  pagers:
+    - colorArg: always
   commit:
     signOff: false
 os:

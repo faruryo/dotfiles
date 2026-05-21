@@ -21,4 +21,4 @@
 	helper =
 	helper = !"{{ lookPath "gh" }}" auth git-credential
 [alias]
-	bclean = !git fetch --prune && git branch --merged | grep -vE '^\\*|main|master|develop' | xargs git branch -d
+	bclean = !git fetch --prune && git branch --merged | grep -vE '^\\*|^\\+|main|master|develop' | xargs git branch -d

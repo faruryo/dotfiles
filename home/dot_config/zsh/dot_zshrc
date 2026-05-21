@@ -49,3 +49,6 @@ export GPG_TTY=$(tty)
 
 # VS Code multi-project launcher
 [[ -f "${ZDOTDIR:-~/.config/zsh}/.code-projects.zsh" ]] && source "${ZDOTDIR:-~/.config/zsh}/.code-projects.zsh"
+
+# Docker Sandbox launcher
+[[ -f "${ZDOTDIR:-~/.config/zsh}/.sbx-claude.zsh" ]] && source "${ZDOTDIR:-~/.config/zsh}/.sbx-claude.zsh"

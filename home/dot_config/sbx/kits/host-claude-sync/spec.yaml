@@ -1,0 +1,22 @@
+schemaVersion: "1"
+kind: mixin
+name: host-claude-sync
+displayName: Host Claude Sync Linker
+description: Dynamically links host-mounted ~/.claude to VM agent configuration directory
+
+commands:
+  startup:
+    - command: |
+        bash -c '
+        rm -rf /home/agent/.claude
+        HOST_CLAUDE=$(find /Users /home -maxdepth 2 -name ".claude" -type d 2>/dev/null | head -n 1)
+        if [ -n "$HOST_CLAUDE" ]; then
+          ln -sfn "$HOST_CLAUDE" /home/agent/.claude
+          echo "Successfully linked host config: $HOST_CLAUDE -> /home/agent/.claude"
+        else
+          mkdir -p /home/agent/.claude
+          echo "No host ~/.claude mount detected. Created isolated fallback directory."
+        fi
+        '
+      user: "1000"
+      description: "Dynamically bridge host and guest configuration directories"

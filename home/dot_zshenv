@@ -23,3 +23,7 @@ export PATH="$HOME/.browser-use-env/bin:$HOME/.local/bin:$HOME/.poetry/bin:$PATH
 
 # Kubernetes
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -52,3 +52,6 @@ export GPG_TTY=$(tty)
 
 # Docker Sandbox launcher
 [[ -f "${ZDOTDIR:-~/.config/zsh}/.sbx-claude.zsh" ]] && source "${ZDOTDIR:-~/.config/zsh}/.sbx-claude.zsh"
+
+# bun completions
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"

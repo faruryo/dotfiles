@@ -38,6 +38,7 @@ chezmoi init --source="$HOME/dotfiles/home" --apply
 | `home/dot_config/zsh/dot_zshrc` | `~/.config/zsh/.zshrc` |
 | `home/dot_config/zsh/dot_zprofile` | `~/.config/zsh/.zprofile` |
 | `home/dot_config/zsh/dot_code-projects.zsh` | `~/.config/zsh/.code-projects.zsh` |
+| `home/dot_config/zsh/dot_secrets.zsh.example` | `~/.config/zsh/.secrets.zsh.example` |
 | `home/dot_config/git/private_config.tmpl` | `~/.config/git/config` (0600, rendered) |
 | `home/dot_config/git/ignore` | `~/.config/git/ignore` |
 | `home/dot_config/ghostty/config` | `~/.config/ghostty/config` |
@@ -54,7 +55,8 @@ chezmoi init --source="$HOME/dotfiles/home" --apply
 ## Key files and their roles
 
 - **`home/dot_zshenv`** — sets XDG dirs, ZDOTDIR, and PATH for Volta, Cargo, Go, Python tools, and Krew
-- **`home/dot_config/zsh/dot_zshrc`** — loads Homebrew, plugins (zsh-autosuggestions, zsh-syntax-highlighting, fzf-tab), Starship, Atuin, Zoxide, mise, direnv, kubectl completions, gcloud, GPG_TTY
+- **`home/dot_config/zsh/dot_zshrc`** — loads Homebrew, plugins (zsh-autosuggestions, zsh-syntax-highlighting, fzf-tab), Starship, Atuin, Zoxide, mise, direnv, kubectl completions, gcloud, GPG_TTY, and `.secrets.zsh` when present
+- **`home/dot_config/zsh/dot_secrets.zsh.example`** — copy to unmanaged `~/.config/zsh/.secrets.zsh` (mode 600) on personal machines only; used for `TYPESAFE_API_KEY`. Do not `chezmoi add` the real file
 - **`home/dot_config/zsh/dot_code-projects.zsh`** — defines `code-projects` shell function (opens multiple VS Code projects from `~/.config/zsh/.vscode-projects.local`)
 - **`home/dot_config/ghostty/config`** — Ghostty terminal emulator config (Metal GPU, catppuccin-mocha theme)
 - **`home/dot_config/zellij/config.kdl`** — Zellij terminal multiplexer config (replaces tmux)
@@ -88,6 +90,17 @@ chezmoi edit ~/.zshenv  # edit a source file and apply
 chezmoi update          # git pull source + apply
 chezmoi status          # show pending changes
 ```
+
+## Local secrets
+
+`~/.config/zsh/.secrets.zsh` is not managed by chezmoi. On a personal machine only:
+
+```sh
+cp ~/.config/zsh/.secrets.zsh.example ~/.config/zsh/.secrets.zsh
+chmod 600 ~/.config/zsh/.secrets.zsh
+```
+
+Put `TYPESAFE_API_KEY` in that file. Do not create it on a work machine, and do not `chezmoi add` it.
 
 ## VS Code multi-project launcher
 

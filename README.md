@@ -38,6 +38,8 @@ brew bundle install --file="$HOME/dotfiles/Brewfile"
 
 2 行目で Brewfile にあるツールをまとめてインストールします。
 
+個人マシンで TypeSafe を使うときは、`~/.config/zsh/.secrets.zsh.example` を `.secrets.zsh` にコピーして `TYPESAFE_API_KEY` を書き、`chmod 600` する。このファイルは chezmoi の管理外なので、会社マシンには置かない。
+
 ---
 
 ## ツールスタック

@@ -1,4 +1,4 @@
 typeset -gr FARU_SBX_KITS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sbx/kits"
 
-alias sbxc='sbx exec -it -w "$PWD" claude-projects claude'
-alias sbxd='sbx exec -it -w "$PWD" claude-projects codex'
+alias sbxc='sbx env exec -it -w "$PWD" "$HOME/projects/secret-memo/.sbx" -- claude'
+alias sbxd='sbx env exec -u agent -it -w "$PWD" "$HOME/projects/secret-memo/.sbx" -- codex'
